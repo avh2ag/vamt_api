@@ -31,7 +31,6 @@ media/
 # Ignore generated files and directories
 .mypy_cache/
 .pytest_cache/
-*/migrations/
 
 # Ignore local configuration files (e.g., for editor, linter, etc.)
 *config_local.py
