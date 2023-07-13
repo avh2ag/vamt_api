@@ -1,9 +1,8 @@
 from django.urls import path
-from .views import CaseCreateView, CaseRetrieveView
+from .views import CaseView, CaseRetrieveUpdateView
 
 urlpatterns = [
-    path('cases/',
-         CaseCreateView.as_view(http_method_names=['post']), name='case-create'),
+    path('cases/', CaseView.as_view(), name='case-list-create'),
     path('cases/<int:id>/',
-         CaseRetrieveView.as_view(http_method_names=['get']), name='case-retrieve'),
+         CaseRetrieveUpdateView.as_view(), name='case-retrieve-update'),
 ]
