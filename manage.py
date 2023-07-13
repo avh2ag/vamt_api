@@ -6,7 +6,16 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vamt_api.settings')
+    prefix = 'vamt_api.settings'
+    if "--settings" in sys.argv:
+        settings_index = sys.argv.index("--settings") + 1
+        os.environ["DJANGO_SETTINGS_MODULE"] = f'{prefix}.{sys.argv[settings_index]}'
+        del sys.argv[settings_index]
+        del sys.argv[settings_index - 1]
+    else:
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", f'{prefix}.local')
+
+    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vamt_api.settings.local')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

@@ -7,8 +7,9 @@ services:
     expose:
       - 8000  # Expose the port on which Gunicorn is running
     environment:
-      - DJANGO_SETTINGS_MODULE=vamt_api.settings  # Set your Django app's production settings module
-    # Add other environment variables as required by your Django app
+      - DJANGO_SETTINGS_MODULE=vamt_api.settings.prod
+    networks:
+      - web-network
 
   nginx:
     image: nginx:latest
@@ -19,4 +20,10 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d  # Path to your Nginx site configuration directory
     depends_on:
       - django
+    networks:
+      - web-network
 
+networks:
+  web-network:
+    driver: bridge
+  
