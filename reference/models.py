@@ -5,8 +5,8 @@ class Case(models.Model):
     name = models.CharField(max_length=50)
     year = models.CharField(max_length=4)  # 4 digit year
     TYPE_CHOICES = (
-        ('civil', 'Civil'),
-        ('criminal', 'Criminal'),
+        ('Civil', 'Civil'),
+        ('Criminal', 'Criminal'),
     )
     type = models.CharField(max_length=10, choices=TYPE_CHOICES, db_index=True)
 
